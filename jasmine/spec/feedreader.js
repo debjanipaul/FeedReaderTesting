@@ -89,15 +89,14 @@ $(function() {
        * the use of Jasmine's beforeEach and asynchronous done() function.
        */
        beforeEach(function(done) {
-         setTimeout(function() {
           loadFeed(0, function() {
                done();
           })
-         }, 100);
        });
+
        it('has atleast one entry', function(){
          expect($('.feed').length).not.toBe(0);
-       })
+       });
 
    });
 
@@ -111,22 +110,18 @@ $(function() {
      var newFeed;
 
      beforeEach(function(done) {
-       setTimeout(function() {
         loadFeed(1, function() {
           newFeed = $('.feed').html;
           done();
         })
-       }, 100);
      });
 
      it('content changes when new feed loaded', function() {
        loadFeed(0, function() {
          oldFeed = $('.feed').html;
-         done();
        });
        expect(oldFeed).not.toEqual(newFeed);
      })
-
   });
-
+  
 }());
