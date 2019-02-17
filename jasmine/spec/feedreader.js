@@ -24,8 +24,8 @@ $(function() {
          */
          it('URLs are defined', function() {
            var urlDef = allFeeds.forEach(function(feed) {
-             expect(feed["url"]).toBeDefined();
-             expect(feed["url"].length).not.toBe(0);
+             expect(feed.url).toBeDefined();
+             expect(feed.url.length).not.toBe(0);
            })
          });
 
@@ -35,8 +35,8 @@ $(function() {
          */
          it('names are defined', function() {
            var nameDef = allFeeds.forEach(function(feed) {
-             expect(feed["name"]).toBeDefined();
-             expect(feed["name"].length).not.toBe(0);
+             expect(feed.name).toBeDefined();
+             expect(feed.name.length).not.toBe(0);
            })
          });
 
@@ -56,9 +56,9 @@ $(function() {
         */
         it('changes visibility', function() {
           menuIcon = $('.menu-icon-link');
-          menuIcon.trigger('click');
+          menuIcon.click();
           expect(document.body).not.toHaveClass('menu-hidden');
-          menuIcon.trigger('click');
+          menuIcon.click();
           expect(document.body).toHaveClass('menu-hidden');
         });
     });
@@ -76,7 +76,7 @@ $(function() {
        });
 
        it('has atleast one entry', function(){
-         expect($('.feed.entry')).not.toBe(0);
+         expect($('.feed .entry').length).not.toBe(0);
        });
    });
 
@@ -92,13 +92,15 @@ $(function() {
         loadFeed(1, function() {
           newFeed = $('.feed').html();
           done();
-        })
+        });
+
+        loadFeed(0, function() {
+          oldFeed = $('.feed').html();
+          done();
+        });
      });
 
      it('content changes when new feed loaded', function() {
-       loadFeed(0, function() {
-         oldFeed = $('.feed').html();
-       });
        expect(oldFeed).not.toEqual(newFeed);
      })
   });
