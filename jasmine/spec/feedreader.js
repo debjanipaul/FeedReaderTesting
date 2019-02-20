@@ -89,14 +89,12 @@ $(function() {
      var newFeed;
 
      beforeEach(function(done) {
-        loadFeed(1, function() {
-          newFeed = $('.feed').html();
-          done();
-        });
-
         loadFeed(0, function() {
           oldFeed = $('.feed').html();
-          done();
+            loadFeed(1, function() {
+              newFeed = $('.feed').html();
+              done();
+            });
         });
      });
 
